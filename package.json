@@ -21,11 +21,11 @@
     "build": "gulp build"
   },
   "bin": {
-    "create-gulp-starter-kit": "./bin/install.js"
+    "create-gulp-starter-kit": "bin/install.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jr-cologne/gulp-starter-kit.git"
+    "url": "git+https://github.com/jr-cologne/gulp-starter-kit.git"
   },
   "author": "JR Cologne",
   "license": "MIT",
@@ -63,5 +63,6 @@
   },
   "engines": {
     "node": ">=10"
-  }
+  },
+  "main": "gulpfile.js"
 }
