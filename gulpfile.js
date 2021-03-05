@@ -71,7 +71,7 @@ gulp.task('sass', () => {
       .pipe(dependents())
       .pipe(sass())
       .pipe(autoprefixer())
-      //.pipe(minifyCss())
+      .pipe(minifyCss())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist_assets_folder + 'css'))
     .pipe(browserSync.stream());
@@ -221,12 +221,12 @@ gulp.task(
   'build', 
   gulp.series(
     'clear', 
-    'html', /* replace the 'html' with 'html-minified' if you need minification */ 
+    'html-minified', /* replace the 'html' with 'html-minified' if you need minification */ 
     'sass', 
     'less', 
     'stylus', 
     'js', 
-    'js-copy', /* replace the 'js-copy' with 'js-minified' if you need minification */
+    'js-minified', /* replace the 'js-copy' with 'js-minified' if you need minification */
     'fonts', 
     'videos',
     'extra-files', 
