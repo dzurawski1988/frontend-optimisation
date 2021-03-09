@@ -145,6 +145,16 @@ gulp.task('js-copy', () => {
     .pipe(browserSync.stream());
 });
 
+gulp.task('js-minified', () => {
+  return gulp.src([ 
+    src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
+    src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
+  ], { since: gulp.lastRun('js-minified'), base: src_assets_folder + 'js/homework' })
+    .pipe(uglify())
+    .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
+    .pipe(browserSync.stream());
+});
+
 gulp.task('scripts', () => {
   return gulp.src([ 
     src_assets_folder + 'js/homework/*.js', 
@@ -275,7 +285,7 @@ gulp.task(
     'less', 
     'stylus', 
     // 'js',
-    'js-copy', 
+    'js-minified', 
     'scripts',
     'requirejsBuild',
     'fonts', 
