@@ -124,9 +124,9 @@ gulp.task('js-copy', () => {
   return gulp.src([ 
     src_assets_folder + 'js/homework/*.js', 
     src_assets_folder + 'js/homework/components/*.js',
-    src_assets_folder + 'js/homework/vendor/*.js', 
-    src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
-    src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
+    // src_assets_folder + 'js/homework/vendor/*.js', 
+    // src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
+    // src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
   ], { since: gulp.lastRun('js-copy'), base: src_assets_folder + 'js/homework' })
     .pipe(uglify())
     // .pipe(concat("all.js"))
@@ -139,7 +139,7 @@ gulp.task('js-minified', () => {
     src_assets_folder + 'js/homework/*.js', 
     src_assets_folder + 'js/homework/components/*.js',
     src_assets_folder + 'js/homework/vendor/*.js', 
-    src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
+    // src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
     src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
   ], { since: gulp.lastRun('js-minified'), base: src_assets_folder + 'js/homework' })
     .pipe(concat("all.js"))
