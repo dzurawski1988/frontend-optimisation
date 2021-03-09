@@ -1,3 +1,13 @@
+// const gulp = require("gulp");
+// const concat = require('gulp-concat');
+ 
+// gulp.task('scripts', function() {
+//   return gulp.src('./src/assets/js/homework/*.js')
+//     .pipe(concat('all.js'))
+//     .pipe(gulp.dest('./dist/assets/js'));
+// });
+
+
 /**
  * Front-end / web performance optimisation starter kit based on a simple Gulp 4 Starter Kit for modern web development.
  *
@@ -42,7 +52,9 @@ const gulp                      = require('gulp'),
       src_folder                = './src/',
       src_assets_folder         = src_folder + 'assets/',
       dist_folder               = './dist/',
-      dist_assets_folder        = dist_folder + 'assets/';
+      dist_assets_folder        = dist_folder + 'assets/',
+      rjs                       = require('gulp-requirejs');
+
 
 gulp.task('clear', () => del([ dist_folder ]));
 
@@ -108,26 +120,16 @@ gulp.task('purgecss', () => {
       }))
       .pipe(gulp.dest(dist_assets_folder + 'css'))
 })
-
-gulp.task('js', () => {
-  return gulp.src([ src_assets_folder + 'js/**/*.js', '!' + src_assets_folder + 'js/homework/**/*.js' ], { since: gulp.lastRun('js') })
-    .pipe(plumber())
-    .pipe(webpack({
-      mode: 'production'
-    }))
-    .pipe(sourcemaps.init())
-      .pipe(babel({
-        presets: [ '@babel/env' ]
-      }))
-      .pipe(concat('all.js'))
-      .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(dist_assets_folder + 'js'))
-    .pipe(browserSync.stream());
-});
-
 gulp.task('js-copy', () => {
-  return gulp.src([ src_assets_folder + 'js/homework/**/*' ], { since: gulp.lastRun('js-copy') })
+  return gulp.src([ 
+    src_assets_folder + 'js/homework/*.js', 
+    src_assets_folder + 'js/homework/components/*.js',
+    src_assets_folder + 'js/homework/vendor/*.js', 
+    src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
+    src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
+  ], { since: gulp.lastRun('js-copy'), base: src_assets_folder + 'js/homework' })
+    .pipe(uglify())
+    // .pipe(concat("all.js"))
     .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
     .pipe(browserSync.stream());
 });
@@ -140,15 +142,78 @@ gulp.task('js-minified', () => {
     src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
     src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
   ], { since: gulp.lastRun('js-minified'), base: src_assets_folder + 'js/homework' })
+    .pipe(concat("all.js"))
     .pipe(uglify())
     .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
     .pipe(browserSync.stream());
 });
 
+gulp.task('js', () => {
+  return gulp.src([ src_assets_folder + 'js/**/*.js', '!' + src_assets_folder + 'js/homework/**/*.js' ], { since: gulp.lastRun('js') })
+    .pipe(plumber())
+    .pipe(webpack({
+      mode: 'production'
+    }))
+    .pipe(sourcemaps.init())
+      .pipe(babel({
+        presets: [ '@babel/env' ]
+      }))
+      // .pipe(concat('all.js'))
+      .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(dist_assets_folder + 'js'))
+    .pipe(browserSync.stream());
+});
+
+// gulp.task('scripts', function() {
+//   return gulp.src('./src/assets/js/homework/*.js')
+//     .pipe(concat('all.js'))
+//     .pipe(gulp.dest('./dist/assets/js'));
+// });
+
+gulp.task('requirejsBuild', function() {
+  return rjs({
+      baseUrl: src_assets_folder + 'js/homework/',
+      out: 'home.js',
+      name: 'home', // no extension
+      waitSeconds: 0,
+      optimize: "uglify",
+      paths: {
+          "jquery"     : "vendor/jquery/dist/jquery.min",
+          "tweenmax"   : "vendor/TweenMax.min",
+          "async"      : "components/async",
+          "google"     : "components/google",
+          "waypoints"  : "components/waypoints.min"
+      },
+  
+      shim: {
+          'bxslider': {
+            deps: ['jquery']
+          },
+          'waypoints': {
+            deps: ['jquery']
+          }
+      },
+      //exclude: ['jquery'],
+      optimizeAllPluginResources: true,
+  
+      //Finds require() dependencies inside a require() or define call. By default
+      //this value is false, because those resources should be considered dynamic/runtime
+      //calls. However, for some optimization scenarios, it is desirable to
+      //include them in the build.
+      //Introduced in 1.0.3. Previous versions incorrectly found the nested calls
+      //by default.
+      findNestedDependencies: true,
+  })
+  .pipe(gulp.dest(dist_assets_folder + 'js/homework')); // pipe it to the output DIR
+});
+
+
+
 gulp.task('images', () => {
   return gulp.src([ src_assets_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)' ], { since: gulp.lastRun('images') })
     .pipe(plumber())
-    .pipe(imagemin())
+    /*.pipe(imagemin())*/
     .pipe(gulp.dest(dist_assets_folder + 'images'))
     .pipe(browserSync.stream());
 });
@@ -221,12 +286,13 @@ gulp.task(
   'build', 
   gulp.series(
     'clear', 
-    'html-minified', /* replace the 'html' with 'html-minified' if you need minification */ 
+    'html-minified',
     'sass', 
     'less', 
     'stylus', 
+    'js-minified',
     'js', 
-    'js-minified', /* replace the 'js-copy' with 'js-minified' if you need minification */
+    'requirejsBuild',
     'fonts', 
     'videos',
     'extra-files', 
