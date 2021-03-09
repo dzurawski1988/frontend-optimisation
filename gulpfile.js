@@ -1,13 +1,3 @@
-// const gulp = require("gulp");
-// const concat = require('gulp-concat');
- 
-// gulp.task('scripts', function() {
-//   return gulp.src('./src/assets/js/homework/*.js')
-//     .pipe(concat('all.js'))
-//     .pipe(gulp.dest('./dist/assets/js'));
-// });
-
-
 /**
  * Front-end / web performance optimisation starter kit based on a simple Gulp 4 Starter Kit for modern web development.
  *
@@ -120,36 +110,12 @@ gulp.task('purgecss', () => {
       }))
       .pipe(gulp.dest(dist_assets_folder + 'css'))
 })
-gulp.task('js-copy', () => {
-  return gulp.src([ 
-    src_assets_folder + 'js/homework/*.js', 
-    src_assets_folder + 'js/homework/components/*.js',
-    // src_assets_folder + 'js/homework/vendor/*.js', 
-    // src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
-    // src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
-  ], { since: gulp.lastRun('js-copy'), base: src_assets_folder + 'js/homework' })
-    .pipe(uglify())
-    // .pipe(concat("all.js"))
-    .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
-    .pipe(browserSync.stream());
-});
-
-gulp.task('js-minified', () => {
-  return gulp.src([ 
-    src_assets_folder + 'js/homework/*.js', 
-    src_assets_folder + 'js/homework/components/*.js',
-    src_assets_folder + 'js/homework/vendor/*.js', 
-    // src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
-    src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
-  ], { since: gulp.lastRun('js-minified'), base: src_assets_folder + 'js/homework' })
-    .pipe(concat("all.js"))
-    .pipe(uglify())
-    .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
-    .pipe(browserSync.stream());
-});
 
 gulp.task('js', () => {
-  return gulp.src([ src_assets_folder + 'js/**/*.js', '!' + src_assets_folder + 'js/homework/**/*.js' ], { since: gulp.lastRun('js') })
+  return gulp.src([ 
+    
+    src_assets_folder + 'js/homework/*.js', 
+     ], { since: gulp.lastRun('js') })
     .pipe(plumber())
     .pipe(webpack({
       mode: 'production'
@@ -165,11 +131,29 @@ gulp.task('js', () => {
     .pipe(browserSync.stream());
 });
 
-// gulp.task('scripts', function() {
-//   return gulp.src('./src/assets/js/homework/*.js')
-//     .pipe(concat('all.js'))
-//     .pipe(gulp.dest('./dist/assets/js'));
-// });
+gulp.task('js-copy', () => {
+  return gulp.src([ 
+    // src_assets_folder + 'js/homework/*.js', 
+    // src_assets_folder + 'js/homework/components/*.js',
+    // src_assets_folder + 'js/homework/vendor/*.js', 
+    src_assets_folder + 'js/homework/vendor/jquery/dist/*.js',
+    src_assets_folder + 'js/homework/vendor/requirejs/*.js',
+  ], { since: gulp.lastRun('js-copy'), base: src_assets_folder + 'js/homework' })
+    .pipe(uglify())
+    // .pipe(concat('all.js'))
+    .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('scripts', () => {
+  return gulp.src([ 
+    src_assets_folder + 'js/homework/*.js', 
+    src_assets_folder + 'js/homework/components/*.js',
+    src_assets_folder + 'js/homework/vendor/*.js',
+  ])
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest(dist_assets_folder + 'js'))
+});
 
 gulp.task('requirejsBuild', function() {
   return rjs({
@@ -290,8 +274,9 @@ gulp.task(
     'sass', 
     'less', 
     'stylus', 
-    'js-minified',
-    'js', 
+    // 'js',
+    'js-copy', 
+    'scripts',
     'requirejsBuild',
     'fonts', 
     'videos',
