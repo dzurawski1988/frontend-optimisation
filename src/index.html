@@ -8,6 +8,34 @@
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-TGDSWZ8');</script>
       <!-- End Google Tag Manager -->
+      <style>
+        @font-face {
+          font-family: "Gordita";
+          src: 
+          url('./assets/fonts/Gordita/GorditaBlack-BlackItalic.woff') format('woff'),
+          url('./assets/fonts/Gordita/GorditaBlack-BlackItalic.woff2') format('woff2'),
+          url('./assets/fonts/Gordita/GorditaBlack.woff') format('woff'),
+          url('./assets/fonts/Gordita/GorditaBlack.woff2') format('woff2'),
+          url('./assets/fonts/Gordita/GorditaLight-Italic.woff') format('woff'),
+          url('./assets/fonts/Gordita/GorditaLight-Italic.woff2') format('woff2');
+          display: swap;
+        }
+
+        @font-face {
+          font-family: 'LeagueGothic';
+          src: 
+          url('./assets/fonts/LeagueGothic/LeagueGothic-CondensedItalic.woff') format('woff'),
+          url('./assets/fonts/LeagueGothic/LeagueGothic-CondensedItalic.woff') format('woff2'),
+          url('./assets/fonts/LeagueGothic/LeagueGothic-CondensedRegular.woff') format('woff'),
+          url('./assets/fonts/LeagueGothic/LeagueGothic-CondensedRegular.woff2') format('woff2'),
+          url('./assets/fonts/LeagueGothic/LeagueGothic-Italic.woff') format('woff'),
+          url('./assets/fonts/LeagueGothic/LeagueGothic-Italic.woff2') format('woff2'),
+          url('./assets/fonts/LeagueGothic/LeagueGothic-Regular.woff') format('woff'),
+          url('./assets/fonts/LeagueGothic/LeagueGothic-Regular.woff2') format('woff2');
+          display: swap;
+        }  
+
+      </style>
     <meta charset="utf-8">
     <title>Web Dev Insider - site to optimise - homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -148,7 +176,9 @@ document.onclick = function () {
             <div>
               <div class="item__category item__category--50 l-megamenu__cat"><a title="White papers" href="">White papers</a></div>
               <h2 class="headline-2">Some super interesting resource to download</h2>
-              <p class="small-text"><img src="/assets/images/homework/post.png" class="l-megamenu__image" alt=""> Just download it and enjoy.
+              <p class="small-text">
+               <picture><img src="/assets/images/homework/post.png" class="l-megamenu__image" alt=""></picture>
+                Just download it and enjoy.
               </p>
               <p>
                 <a class="btn btn--bg-darkblue btn--border-blue" href="/" title="Download now: Ovum Report - Vodafone in-network call recording">Download now</a>
@@ -246,9 +276,11 @@ document.onclick = function () {
           <img id="card-chip" src="/assets/images/homework/anim/card-chip.png" alt="Card chip" />
           <img id="cloud" src="/assets/images/homework/anim/cloud.png" alt="Cloud" />
           <img id="chart-base" src="/assets/images/homework/anim/chart-base.png" alt="Chart base" />
-          <img id="chart-1" src="/assets/images/homework/anim/chart-1.png" alt="Chart 1" />
-          <img id="chart-2" src="/assets/images/homework/anim/chart-2.png" alt="Chart 2" />
-          <img id="chart-3" src="/assets/images/homework/anim/chart-3.png" alt="Chart 3" />
+          <picture> 
+            <source media="(min-width:320px)">
+            <img id="chart-1" srcset="/assets/images/homework/anim/chart-1.png 1200w" alt="Chart 1" /></picture>
+          <picture><img id="chart-2" src="/assets/images/homework/anim/chart-2.png" alt="Chart 2" /></picture>
+          <img id="chart-3" srcset="/assets/images/homework/anim/chart-3.png" alt="Chart 3" />
           <img id="email" src="/assets/images/homework/anim/email.png" alt="Email" />
         </div>
       </div>
