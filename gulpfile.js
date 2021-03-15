@@ -445,7 +445,7 @@ gulp.task(
     'extra-files', 
     /*'purgecss',*/
     /*'generate-critical-css',*/
-    /*'generate-service-worker',*/
+    'generate-service-worker'
   )
 );
 

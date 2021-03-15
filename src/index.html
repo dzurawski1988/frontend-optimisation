@@ -79,6 +79,20 @@
         document.getElementsByTagName("html")[0].classList.add('fonts-loaded');
       })
 
+(function(global) {
+  'use strict';
+  global.toolbox.router.get('/(.*)', global.toolbox.fastest, {
+    origin: /\.(?:googleapis|gstatic)\.com$/
+  })
+})(self)
+
+(function(global){
+  'use strict';
+  global.toolbox.router.get('/(.*)', global.toolbox.fastest, {
+    origin: /\.(?:typekit)\.net$/
+  })
+})(self)
+
 var scriptsExecuted = false;
 var head = document.getElementsByTagName('head')[0] || document.documentElement;
 function executeScripts() {
