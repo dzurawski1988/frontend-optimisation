@@ -1,3 +1,11 @@
+html:not(.fonts-loaded) {
+	font-family: "Georgia", sans-serif;
+	line-height: 1.6;
+	font-weight: 600;
+	letter-spacing: 0.65px;
+	word-spacing: 2px;
+}
+
 fscript {
 		display: none;}
 /* SASS tools */
