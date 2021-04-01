@@ -173,10 +173,13 @@ gulp.task('js-copy', () => {
   return gulp.src([ 
     // src_assets_folder + 'js/homework/*.js', 
     // src_assets_folder + 'js/homework/components/*.js',
-    // src_assets_folder + 'js/homework/vendor/*.js', 
+    // src_assets_folder + 'js/homework/vendor/*.js',
+    src_assets_folder + 'js/homework/lazy/lazysizes.min.js',
+    src_assets_folder + 'js/homework/lazy/ls.bgset.min.js',
     src_assets_folder + 'js/homework/vendor/jquery/dist/*.js',
     src_assets_folder + 'js/homework/vendor/requirejs/*.js',
-  ], { since: gulp.lastRun('js-copy'), base: src_assets_folder + 'js/homework' })
+  ],
+   { since: gulp.lastRun('js-copy'), base: src_assets_folder + 'js/homework' })
     .pipe(uglify())
     // .pipe(concat('all.js'))
     .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
@@ -215,7 +218,9 @@ gulp.task('requirejsBuild', function() {
           "tweenmax"   : "vendor/TweenMax.min",
           "async"      : "components/async",
           "google"     : "components/google",
-          "waypoints"  : "components/waypoints.min"
+          "waypoints"  : "components/waypoints.min",
+          "lazysizes"  : "lazy/lazysizes.min",
+          "lazybgset"  : "lazy/ls.bgset.min",
       },
   
       shim: {

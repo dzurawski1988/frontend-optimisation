@@ -5,9 +5,21 @@ html:not(.fonts-loaded) {
 	letter-spacing: 0.65px;
 	word-spacing: 2px;
 }
-
 fscript {
 		display: none;}
+		@supports (--foo: 1) {
+			.aspect {
+			  position: relative;
+			}
+			.aspect {
+			  padding-top: calc(var(--heigth) / var(--width) * 100%);
+			}
+			.aaspect img {
+			  position: absolute;
+			  top: 0;
+			  max-height: 100%
+			}
+		  }		
 /* SASS tools */
 @import "sass-components/_variables";
 @import "sass-components/_mixins";
