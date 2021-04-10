@@ -31,6 +31,7 @@ const gulp                      = require('gulp'),
       uglify                    = require('gulp-uglify'),
       concat                    = require('gulp-concat'),
       imagemin                  = require('gulp-imagemin'),
+      imageminWebp               =require('imagemin-webp'),
       browserSync               = require('browser-sync').create(),
       dependents                = require('gulp-dependents'),
       htmlmin                   = require('gulp-htmlmin'),
@@ -183,7 +184,7 @@ gulp.task('requirejsBuild', function() {
 gulp.task('images', () => {
   return gulp.src([ src_assets_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)' ], { since: gulp.lastRun('images') })
     .pipe(plumber())
-    /*.pipe(imagemin())*/
+    .pipe(imagemin())
     .pipe(gulp.dest(dist_assets_folder + 'images'))
     .pipe(browserSync.stream());
 });
@@ -255,18 +256,18 @@ gulp.task('generate-critical-css', (cb) => {
 gulp.task(
   'build', 
   gulp.series(
-    'clear', 
+    'clear',
     'html-minified',
-    'sass', 
-    'less', 
-    'stylus', 
-    //'js', 
-    'js-copy', 
+    'sass',
+    'less',
+    'stylus',
+    //'js',
+    'js-copy',
     'requirejsBuild',
-    'fonts', 
+    'fonts',
     'videos',
-    'extra-files', 
-    'images', 
+    'extra-files',
+    'images',
     /*'purgecss',*/
     /*'generate-critical-css',*/
     'generate-service-worker',
@@ -284,7 +285,6 @@ gulp.task('serve', () => {
     open: false
   });
 });
-
 gulp.task('watch', () => {
   const watchImages = [
     src_assets_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)'

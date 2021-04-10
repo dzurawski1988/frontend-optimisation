@@ -15,7 +15,8 @@
     <meta name="description" content="Web Dev Insider demo page for learning purposes.">
     <meta name="format-detection" content="telephone=no">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="preload" href="./assets/images/homework/banner.png" as="image">
+    <link rel="preconnect" href="https://ik.imagekit.io" crossorigin>
+    <link rel="preload" href=".https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/banner.png" as="image">
     <link rel="preload" href="./assets/fonts/subset-Montserrat-Light.woff2" as="font">
     <link rel="preload" href="./assets/fonts/subset-Montserrat-SemiBold.woff2" as="font">
     <style>
@@ -61,6 +62,37 @@
     <script src="https://js.stripe.com/v3/" async></script>
     <script data-main="/assets/js/homework/home" src="/assets/js/homework/vendor/requirejs/require.js" defer></script>
     <script src="/assets/js/homework/vendor/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/imagekit-javascript/dist/imagekit.min.js"></script>
+    <script>
+var imagekit = new ImageKit({
+  publicKey: "public_A+JJKYQKSvWrhqKOnH78Wc4C15M=",
+    urlEndpoint: "https://ik.imagekit.io/djq141uxw5o/fo",
+    authenticationEndpoint: "https://frontend-optimisation-peach.vercel.app",
+});   
+
+var imageURL = imagekit.url({
+    path : "https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/pci-compliance-45db.png",
+    transformation : [{
+        "height" : "300",
+        "width" : "400"
+    }]
+});
+function upload(data) {
+    var file = document.querySelectorAll("img");
+    imagekit.upload({
+        file : file.files[0],
+        fileName : "pci-compliance-45db.png",
+        tags : ["tag1"]
+    }, function(err, result) {
+        console.log(arguments);
+        console.log(imagekit.url({
+            src: result.url,
+            transformation : [{ height: 300, width: 400}]
+        }));
+    })
+}
+upload();
+    </script>
     <script>var media_url = '/assets/', site_url = '/';$(document).load().scrollTop(0);</script>
     <script>
     (function (w, d) {
@@ -160,7 +192,7 @@
 
     <nav class="l-navbar">
       <a class="logo" href="/">
-        <img src="/assets/images/homework/logo.svg" width="120" height="58" alt="Web Dev Insider" title="Web Dev Insider">
+        <img src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/logo.svg" width="120" height="58" alt="Web Dev Insider" title="Web Dev Insider">
       </a>
 
       <ul class="navbar-menu">
@@ -198,7 +230,7 @@
               <div class="item__category item__category--50 l-megamenu__cat"><a title="White papers" href="">White papers</a></div>
               <h2 class="headline-2">Some super interesting resource to download</h2>
               <p class="small-text">
-               <picture><img loading="lazy" class="lazy" data-src="/assets/images/homework/post.png" class="l-megamenu__image" alt=""></picture>
+               <picture><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/post.png" class="l-megamenu__image" alt=""></picture>
                 Just download it and enjoy.
               </p>
               </p>
@@ -235,7 +267,7 @@
             <div>
               <div class="item__category item__category--79 l-megamenu__cat"><a title="eBooks" href="/">eBooks</a></div>
               <h2 class="headline-2">PCI DSS and the contact center</h2>
-              <p class="small-text"><img loading="lazy" loading="lazy" class="lazy" data-src="/assets/images/homework/news-example.jpg" class="l-megamenu__image" alt=""> Some text is here so you are impressed and you will click the button below.
+              <p class="small-text"><img loading="lazy" loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/news-example.jpg" class="l-megamenu__image" alt=""> Some text is here so you are impressed and you will click the button below.
               </p>
               <p>
                 <a class="btn btn--bg-darkblue btn--border-blue" href="/2" title="Download now">Download now</a>
@@ -255,7 +287,7 @@
             <div>
               <div class="item__category item__category--50 l-megamenu__cat"><a title="White papers" href="/">White papers</a></div>
               <h2 class="headline-2">Report about mobile payment gateways</h2>
-              <p class="small-text"><img loading="lazy" class="lazy" data-src="/assets/images/homework/post2.png" class="l-megamenu__image" alt=""> An MNO service that doesn&#39;t require a SIM change
+              <p class="small-text"><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/post2.png" class="l-megamenu__image" alt=""> An MNO service that doesn&#39;t require a SIM change
               </p>
               <p>
                 <a class="btn btn--bg-darkblue btn--border-blue" href="/" title="Download now">Download now</a>
@@ -268,7 +300,7 @@
 
     <header
       class="l-home-banner"
-      style="background-image: url('/assets/images/homework/banner.png')">
+      style="background-image: url('https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/banner.png')">
       <div class="layout">
         <div class="home-banner__content text">
           <h1 class="headline-1">Seamless<br> payment option</h1>
@@ -288,22 +320,22 @@
         </div>
 
         <div class="home-banner__anim">
-          <img loading="lazy" id="resizer" src="/assets/images/homework/anim/empty-block.png" alt="Empty block" />
-          <img loading="lazy" id="shadow" src="/assets/images/homework/anim/shadow.png" alt="Shadow" />
-          <img loading="lazy" id="rainbow" src="/assets/images/homework/anim/rainbow.png" alt="Rainbow" />
-          <img loading="lazy" id="pc" src="/assets/images/homework/anim/pc.png" alt="PC" />
-          <img loading="lazy" id="social" src="/assets/images/homework/anim/social.png" alt="Social media" />
-          <img loading="lazy" id="mobile" src="/assets/images/homework/anim/mobile.png" alt="Mobile" />
-          <img loading="lazy" id="card-base" src="/assets/images/homework/anim/card-base.png" alt="Card base" />
-          <img loading="lazy" id="card-chip" src="/assets/images/homework/anim/card-chip.png" alt="Card chip" />
-          <img loading="lazy" id="cloud" src="/assets/images/homework/anim/cloud.png" alt="Cloud" />
-          <img loading="lazy" id="chart-base" src="/assets/images/homework/anim/chart-base.png" alt="Chart base" />
+          <img loading="lazy" id="resizer" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/empty-block.png" alt="Empty block" />
+          <img loading="lazy" id="shadow" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/shadow.png" alt="Shadow" />
+          <img loading="lazy" id="rainbow" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/rainbow.png" alt="Rainbow" />
+          <img loading="lazy" id="pc" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/pc.png" alt="PC" />
+          <img loading="lazy" id="social" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/social.png" alt="Social media" />
+          <img loading="lazy" id="mobile" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/mobile.png" alt="Mobile" />
+          <img loading="lazy" id="card-base" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/card-base.png" alt="Card base" />
+          <img loading="lazy" id="card-chip" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/card-chip.png" alt="Card chip" />
+          <img loading="lazy" id="cloud" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/cloud.png" alt="Cloud" />
+          <img loading="lazy" id="chart-base" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/chart-base.png" alt="Chart base" />
           <picture> 
             <source media="(min-width:320px)">
-            <img loading="lazy" id="chart-1" srcset="/assets/images/homework/anim/chart-1.png 1200w" alt="Chart 1" /></picture>
-          <picture><img loading="lazy" id="chart-2" src="/assets/images/homework/anim/chart-2.png" alt="Chart 2" /></picture>
-          <img loading="lazy" id="chart-3" srcset="/assets/images/homework/anim/chart-3.png" alt="Chart 3" />
-          <img loading="lazy" id="email" src="/assets/images/homework/anim/email.png" alt="Email" />
+            <img loading="lazy" id="chart-1" srcset="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/chart-1.png 1200w" alt="Chart 1" /></picture>
+          <picture><img loading="lazy" id="chart-2" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/chart-2.png" alt="Chart 2" /></picture>
+          <img loading="lazy" id="chart-3" srcset="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/chart-3.png" alt="Chart 3" />
+          <img loading="lazy" id="email" src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/anim/email.png" alt="Email" />
         </div>
       </div>
       <a title="Slide down" class="btn btn--border-blue btn--arrow-down" href="#main">Slide down</a>
@@ -372,7 +404,7 @@
           <section class="col-25 left">
             <div>
               <figure class="aspect" style="--width:500; --heigth: 333">
-                <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/pci-compliance-45db.png" width="175" alt="">
+                <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/pci-compliance-45db.png" width="175" alt="">
               </figure>
               <h2 class="headline-2">PCI<br />
                 Compliance
@@ -386,7 +418,7 @@
           <section class="col-25 left">
             <div>
               <figure class="aspect" style="--width:500; --heigth: 333">
-                <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/call-recording-4d00.png" width="175" alt="">
+                <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/call-recording-4d00.png" width="175" alt="">
               </figure>
               <h2 class="headline-2">Voice and data recording solutions
               </h2>
@@ -399,7 +431,7 @@
           <section class="col-25 left">
             <div>
               <figure class="aspect" style="--width:500; --heigth: 333">
-                <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/interaction-analytics-4124.png" width="175" alt="">
+                <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/interaction-analytics-4124.png" width="175" alt="">
               </figure>
               <h2 class="headline-2">Interaction analytics solutions
               </h2>
@@ -412,7 +444,7 @@
           <section class="col-25 left">
             <div>
               <figure class="aspect" style="--width:500; --heigth: 333">
-                <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/platform-cloud-enabled-f7b0.png" width="175" alt="">
+                <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/platform-cloud-enabled-f7b0.png" width="175" alt="">
               </figure>
               <h2 class="headline-2">Platform
                 <br><span class="headline-2__smaller"> cloud-enabled solutions</span>
@@ -429,8 +461,8 @@
       <div
       data-sizes="auto" id="section-global-map" class="lazy page-section page-section--global-map page-section--global-map__home page-section--triangle-white"
       data-style="#section-global-map {
-        background: url('/assets/images/homework/map-dotted.png') center center no-repeat;
-        background: url('/assets/images/homework/bg-sec-grad-lime.svg') top center no-repeat;
+        background: url('https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/map-dotted.png') center center no-repeat;
+        background: url('https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/bg-sec-grad-lime.svg') top center no-repeat;
         background-size: auto auto, cover;
         background-attachment: fixed, scroll;
       }">
@@ -441,7 +473,7 @@
       <!-- section with slider -->
       <div id="section-bg-dark" class="lazy page-section page-section--bg-dark lazyload"
       data-style="#section-bg-dark {
-          background: url('/assets/images/homework/bg-sec-dark-circles.png');
+          background: url('https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/bg-sec-dark-circles.png');
           background-size: auto auto, cover;
         }
       "
@@ -456,7 +488,7 @@
             <div id="slider-features" class="text text--bg-grey">
               <section>
                 <figure class="aspect" style="--width:500; --heigth: 333">
-                  <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/slider-capture-0f4c.png" alt="">
+                  <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/slider-capture-0f4c.png" alt="">
                 </figure>
                 <div>
                   <span class="headline-2 blue">Capture</span>
@@ -475,7 +507,7 @@
               </section>
               <section>
                 <figure class="aspect" style="--width:500; --heigth: 333">
-                  <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/slider-store-c81d.png" alt="">
+                  <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/slider-store-c81d.png" alt="">
                 </figure>
                 <div>
                   <span class="headline-2 green">Store</span>
@@ -494,7 +526,7 @@
               </section>
               <section>
                 <figure class="aspect" style="--width:500; --heigth: 333">
-                  <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/slider-analyze-cbfa.png" alt="">
+                  <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/slider-analyze-cbfa.png" alt="">
                 </figure>
                 <div>
                   <span class="headline-2 orange">Analyze</span>
@@ -513,7 +545,7 @@
               </section>
               <section>
                 <figure class="aspect" style="--width:500; --heigth: 333">
-                  <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/slider-consume-e378.png" alt="">
+                  <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/slider-consume-e378.png" alt="">
                 </figure>
                 <div>
                   <span class="headline-2 red">Consume</span>
@@ -550,8 +582,8 @@
       id="section-network"
       data-style="
       #section-network {
-          background: url('/assets/images/homework/bg-sec-fixed-network.png') bototm center no-repeat;
-        background: url('/assets/images/homework/bg-sec-grad-blue.svg') center center no-repeat;
+          background: url('https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/bg-sec-fixed-network.png') bototm center no-repeat;
+        background: url('https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/bg-sec-grad-blue.svg') center center no-repeat;
         background-size: auto auto, cover;
         }
       ">
@@ -611,7 +643,7 @@
                 <div id="text-bg-blue" class="lazy left col-65 text text--bg-blue"
                   data-style="
                     #text-bg-blue {
-                      background : url('/assets/images/homework/bg-box-grad-blue.jpg');
+                      background : url('https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/bg-box-grad-blue.jpg');
                     }
                   "
                 >
@@ -631,7 +663,7 @@
                   </ul>
                 </div>
                 <div class="info-box__product-tour col-35 left">
-                  <img loading="lazy" class="lazy" data-src="/assets/images/homework/slider-store.png" alt="">
+                  <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/slider-store.png" alt="">
                   <a class="btn btn--bg-darkblue btn--border-blue popup" href="https://www.youtube.com/watch?v=KCK0PqiJbA0">Product Tour</a>
                 </div>
               </div>
@@ -643,7 +675,7 @@
       <!-- customers -->
       <section 
         class="page-section page-section--customers"
-        data-bgset="/assets/images/homework/bg-sec-customers.jpg">
+        data-bgset="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/bg-sec-customers.jpg">
         <div class="layout">
           <div class="text text--bg-blue">
             <h3 class="headline-3">
@@ -652,16 +684,16 @@
             </h3>
           </div>
           <ul class="page-section--customers__logos">
-            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/viking-135-1246.jpg" alt=""></li>
-            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/vodafone-135-1a70.jpg" alt=""></li>
-            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/sse-135-4e83.jpg" alt=""></li>
-            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/investec-135-6def.jpg" alt=""></li>
-            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/cowen-group-135-ef66.jpg" alt=""></li>
-            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/gatehouse-bank-135-d82b.jpg" alt=""></li>
-            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/bgc-135-bb6b.jpg" alt=""></li>
-            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/centrica-135-1f68.jpg" alt=""></li>
-            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/itg-1352-5e17.jpg" alt=""></li>
-            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/bmo-135-78f7.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/logos/gallery/viking-135-1246.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/logos/gallery/vodafone-135-1a70.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/logos/gallery/sse-135-4e83.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/logos/gallery/investec-135-6def.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/logos/gallery/cowen-group-135-ef66.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/logos/gallery/gatehouse-bank-135-d82b.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/logos/gallery/bgc-135-bb6b.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/logos/gallery/centrica-135-1f68.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/logos/gallery/itg-1352-5e17.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/logos/gallery/bmo-135-78f7.jpg" alt=""></li>
           </ul>
           <div class="text text--bg-blue page-section--customers__learn">
             <p>
@@ -687,7 +719,7 @@
                       <h6 class="headline-7"><a href="/">Some event that happened on 2014 Amsterdam, Netherlands</a></h6>
                     </header>
                     <figure class="aspect" style="--width:500; --heigth: 333">
-                      <img loading="lazy" class="lazy" data-src="/assets/images/homework/post3.png" alt="">
+                      <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/post3.png" alt="">
                     </figure>
                     <p class="small-text">
                       Cum sociis natoque penatibus et ultrices volutpat. Nullam wisi ultricies a, gravida vitae, dapibus risus ante sodales lectus blandit eu, tempor diam pede cursus vitae, ultricies eu, faucibus quis, porttitor eros cursus lectus, pellentesque eget, bibendum a, gravida ullamcorper quam.
@@ -704,7 +736,7 @@
                       <h6 class="headline-7"><a href="/">Council Community Meeting 9-11 2014 Florida USA</a></h6>
                     </header>
                     <figure class="aspect" style="--width:500; --heigth: 333">
-                      <img loading="lazy" class="lazy" data-src="/assets/images/homework/post4.png" alt="">
+                      <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/post4.png" alt="">
                     </figure>
                     <p class="small-text">
                       Cum sociis natoque penatibus et ultrices volutpat. Nullam wisi ultricies a, gravida vitae, dapibus risus ante sodales lectus blandit eu, tempor diam pede cursus vitae, ultricies eu, faucibus quis, porttitor eros cursus lectus, pellentesque eget, bibendum a, gravida ullamcorper quam.
@@ -721,7 +753,7 @@
                       <h6 class="headline-7"><a href="">European Community Meeting Maritim Hotel Berlin October 7-9, 2014  Berlin, Germany</a></h6>
                     </header>
                     <figure class="aspect" style="--width:500; --heigth: 333">
-                      <img loading="lazy" class="lazy" data-src="/assets/images/homework/post5.png" alt="">
+                      <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/post5.png" alt="">
                     </figure>
                     <p class="small-text">
                       Cum sociis natoque penatibus et ultrices volutpat. Nullam wisi ultricies a, gravida vitae, dapibus risus ante sodales lectus blandit eu, tempor diam pede cursus vitae, ultricies eu, faucibus quis, porttitor eros cursus lectus, pellentesque eget, bibendum a, gravida ullamcorper quam.
@@ -772,7 +804,7 @@
       <div class="l-footer__top">
         <div class="layout">
           <div class="col-15 left">
-            <a title="Home" href="/"><img loading="lazy" class="lazy" data-src="/assets/images/homework/logo.svg" alt="Web Dev Insider" width="141" height="42"></a>
+            <a title="Home" href="/"><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/logo.svg" alt="Web Dev Insider" width="141" height="42"></a>
           </div>
           <div class="col-85 l-footer__top-links right">
             <ul>
