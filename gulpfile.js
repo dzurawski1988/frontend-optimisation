@@ -16,12 +16,6 @@
  * The gulp configuration file.
  *
  */
- 
-//  https://www.npmjs.com/package/gulp-responsive-imgz
-// https://github.com/Maistho/gulp-html-srcset
-// https://github.com/mahnunchik/gulp-responsive/blob/master/examples/advanced.md
-
-// https://stackoverflow.com/questions/43401594/gulp-add-srcset-property-to-all-img-tags
 
 const gulp                      = require('gulp'),
       del                       = require('del'),
@@ -44,62 +38,30 @@ const gulp                      = require('gulp'),
       path                      = require('path'),
       critical                  = require('critical'),
       purgecss                  = require('gulp-purgecss'),
-      srcset                    = require('gulp-srcset').default,
-      imgRetina                 = require('gulp-responsive-imgz'),
-      transform                 = require('gulp-html-transform').default,
-      htmlSrcset                = require('gulp-html-srcset').default,
-      srcsetLazy = require('gulp-srcset-lazy'),
-      webp = require('gulp-webp'),
+
       src_folder                = './src/',
       src_assets_folder         = src_folder + 'assets/',
       dist_folder               = './dist/',
       dist_assets_folder        = dist_folder + 'assets/',
-      rjs                       = require('gulp-requirejs')
+      rjs                       = require('gulp-requirejs');
 
 
 gulp.task('clear', () => del([ dist_folder ]));
 
-
-// gulp.task('views', function() {
-//   return gulp.src('./src/*.html')
-//     .pipe(srcsetLazy({
-//      suffix: {
-//     '1x': '.jpg',
-//     '320w': '@320w.webp',
-//     // '4x': '@540w.webp',
-//     // '5x': '@860w.webp',
-//     // '6x': '@1024w.webp',
-//     // '7x': '@1280w.webp',
-//     // '8x': '@1920w.webp',
-//   }}
-//     ))
-//     .on('error', (e)=> {
-//       console.log(e.message);
-//     })
-//     .pipe(gulp.dest(dist_folder));
- 
-// });
-
-// var retinaOpts = {1: '', 2: '@320w', 3: '@540w'}
-
 gulp.task('html', () => {
-  gulp
-    .src('src/*.html')
-    .pipe(plumber())
-    .pipe(
-      transform(
-        htmlSrcset({
-          width: [1, 320, 540, 860, 1024, 1280, 1920],
-          format: ['webp', 'png'],
-        }),
-        lqip({
-          method: 'primaryColor',
-        }),
-      ),
-    )
+  return gulp.src([ src_folder + '**/*.html' ], {
+    base: src_folder,
+    since: gulp.lastRun('html')
+  })
     .pipe(gulp.dest(dist_folder))
-})
+    .pipe(browserSync.stream());
+});
 
+gulp.task('html-minified', () => {
+  return gulp.src(src_folder + '*.html')
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(gulp.dest(dist_folder))
+});
 
 gulp.task('sass', () => {
   return gulp.src([
@@ -150,10 +112,7 @@ gulp.task('purgecss', () => {
 })
 
 gulp.task('js', () => {
-  return gulp.src([ 
-    
-    src_assets_folder + 'js/homework/*.js', 
-     ], { since: gulp.lastRun('js') })
+  return gulp.src([ src_assets_folder + 'js/**/*.js', '!' + src_assets_folder + 'js/homework/**/*.js' ], { since: gulp.lastRun('js') })
     .pipe(plumber())
     .pipe(webpack({
       mode: 'production'
@@ -162,7 +121,7 @@ gulp.task('js', () => {
       .pipe(babel({
         presets: [ '@babel/env' ]
       }))
-      // .pipe(concat('all.js'))
+      .pipe(concat('all.js'))
       .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist_assets_folder + 'js'))
@@ -171,39 +130,15 @@ gulp.task('js', () => {
 
 gulp.task('js-copy', () => {
   return gulp.src([ 
-    // src_assets_folder + 'js/homework/*.js', 
-    // src_assets_folder + 'js/homework/components/*.js',
-    // src_assets_folder + 'js/homework/vendor/*.js',
-    src_assets_folder + 'js/homework/lazy/lazysizes.min.js',
-    src_assets_folder + 'js/homework/lazy/ls.bgset.min.js',
-    src_assets_folder + 'js/homework/vendor/jquery/dist/*.js',
-    src_assets_folder + 'js/homework/vendor/requirejs/*.js',
-  ],
-   { since: gulp.lastRun('js-copy'), base: src_assets_folder + 'js/homework' })
-    .pipe(uglify())
-    // .pipe(concat('all.js'))
-    .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
-    .pipe(browserSync.stream());
-});
-
-gulp.task('js-minified', () => {
-  return gulp.src([ 
-    src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
-    src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
-  ], { since: gulp.lastRun('js-minified'), base: src_assets_folder + 'js/homework' })
-    .pipe(uglify())
-    .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
-    .pipe(browserSync.stream());
-});
-
-gulp.task('scripts', () => {
-  return gulp.src([ 
     src_assets_folder + 'js/homework/*.js', 
     src_assets_folder + 'js/homework/components/*.js',
-    src_assets_folder + 'js/homework/vendor/*.js',
-  ])
-    .pipe(concat('all.js'))
-    .pipe(gulp.dest(dist_assets_folder + 'js'))
+    src_assets_folder + 'js/homework/vendor/*.js', 
+    src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
+    src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
+  ], { since: gulp.lastRun('js-copy'), base: src_assets_folder + 'js/homework' })
+    .pipe(uglify())
+    .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('requirejsBuild', function() {
@@ -218,9 +153,7 @@ gulp.task('requirejsBuild', function() {
           "tweenmax"   : "vendor/TweenMax.min",
           "async"      : "components/async",
           "google"     : "components/google",
-          "waypoints"  : "components/waypoints.min",
-          "lazysizes"  : "lazy/lazysizes.min",
-          "lazybgset"  : "lazy/ls.bgset.min",
+          "waypoints"  : "components/waypoints.min"
       },
   
       shim: {
@@ -254,114 +187,6 @@ gulp.task('images', () => {
     .pipe(gulp.dest(dist_assets_folder + 'images'))
     .pipe(browserSync.stream());
 });
-
-gulp.task('webp', async () => {
-    var h = gulp.src(src_assets_folder + 'images/homework/*.{jpg,png}')
-        .pipe(webp())
-        .pipe(gulp.dest(dist_assets_folder + 'images/homework'))
-
-        var a = gulp.src(src_assets_folder + 'images/homework/anim/*.{jpg,png}')
-        .pipe(webp())
-        .pipe(gulp.dest(dist_assets_folder + 'images/homework/anim'))
-
-
-        var l = gulp.src(src_assets_folder + 'images/homework/i/logos/gallery/*.{jpg,png}')
-        .pipe(webp())
-        .pipe(gulp.dest(dist_assets_folder + 'images/homework/i/logos/gallery'))
-
-        var sl = gulp.src(src_assets_folder + 'images/homework/i/slideshow/*.{jpg,png}')
-        .pipe(webp())
-        .pipe(gulp.dest(dist_assets_folder + 'images/homework/i/slideshow'))
-});
-
-gulp.task('srcset', async () => {
-   var homework = gulp.src('./src/assets/images/homework/*.{jpg,png}')
-  .pipe(srcset([{
-            // match:  '(min-width: 10px)',
-            width:  [1920, 1280, 1024, 860, 540, 320],
-            format: ['webp']
-        }], {
-            skipOptimization: true
-        }))
-        .pipe(gulp.dest([
-          dist_assets_folder + 'images/homework',
-          ]))
-
-          var anim = gulp.src('./src/assets/images/homework/anim/*.{jpg,png}')
-  .pipe(srcset([{
-            // match:  '(min-width: 50px)',
-            width:  [320],
-            format: ['webp']
-        }], {
-            skipOptimization: true
-        }))
-        .pipe(gulp.dest([
-          dist_assets_folder + 'images/homework/anim',
-          ]))
-
-            var logos = gulp.src('./src/assets/images/homework/i/logos/gallery/*.{jpg,png}')
-  .pipe(srcset([{
-            // match:  '(min-width: 50px)',
-            width:  [320],
-            format: ['webp']
-        }], {
-            skipOptimization: true
-        }))
-        .pipe(gulp.dest([
-          dist_assets_folder + 'images/homework/i/logos/gallery',
-          ]))
-
-                 var slideshow = gulp.src('./src/assets/images/homework/i/slideshow/*.{jpg,png}')
-  .pipe(srcset([{
-            // match:  '(min-width: 50px)',
-            width:  [320],
-            format: ['webp']
-        }], {
-            skipOptimization: true
-        }))
-        .pipe(gulp.dest([
-          dist_assets_folder + 'images/homework/i/slideshow',
-          ]))
-});
-
-gulp.task('html', () => {
-  return gulp.src([ src_folder + '**/*.html' ], {
-    base: src_folder,
-    since: gulp.lastRun('html')
-  })
-  // .pipe(transform(
-  //   htmlSrcset({
-  //     width: [1, 1920, 1280, 1024, 860, 540, 320],
-  //     format: ['webp', 'jpg'],
-  //   }),
-  // ))
-  // .pipe(imgRetina(retinaOpts))
-    .pipe(gulp.dest(dist_folder))
-    .pipe(browserSync.stream());
-});
-
-
-gulp.task('html-srcset', ()=> {
-  return gulp.src(src_folder + '*.html')
-  .pipe(transform(
-    htmlSrcset({
-      width: [1, 1920, 1280, 1024, 860, 540, 320],
-      format: ['webp', 'png'],
-    }),
-  ))
-  .pipe(gulp.dest(dist_folder))
-})
-
-gulp.task('html-minified', () => {
-  return gulp.src(src_folder + '*.html')
-  // .pipe(imgRetina())
-  // .pipe(imgRetina({
-  //     1: '', 2: 'dupablada', 3: 'jesteśzjebany'
-  //   }))
-    .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(gulp.dest(dist_folder))
-});
-
 
 gulp.task('fonts', () => {
   return gulp.src([ src_assets_folder + 'fonts/**/*' ], { since: gulp.lastRun('fonts') })
@@ -400,7 +225,6 @@ gulp.task('write-service-worker', (cb) => {
     ],
     staticFileGlobs: [
       // Add/remove glob patterns to match your directory setup.
-    
       `${dist_folder}assets/fonts/*.woff2`,
       `${dist_folder}assets/css/**/*.css`
     ],
@@ -432,30 +256,24 @@ gulp.task(
   'build', 
   gulp.series(
     'clear', 
-     'html',
-      'images',
-      'webp',
-    'srcset',
     'html-minified',
-    // 'html-srcset',
-    // 'views',
     'sass', 
     'less', 
     'stylus', 
-    // 'js',
-    'js-minified', 
-    'scripts',
+    //'js', 
+    'js-copy', 
     'requirejsBuild',
     'fonts', 
     'videos',
     'extra-files', 
+    'images', 
     /*'purgecss',*/
     /*'generate-critical-css',*/
-    'generate-service-worker'
+    'generate-service-worker',
   )
 );
 
-gulp.task('dev', gulp.series('html', 'html-minified', 'sass', 'less', 'fonts', 'videos', 'extra-files', 'stylus', 'js', 'js-copy', 'srcset'));
+gulp.task('dev', gulp.series('html', 'sass', 'less', 'fonts', 'videos', 'extra-files', 'stylus', 'js', 'js-copy'));
 
 gulp.task('serve', () => {
   return browserSync.init({

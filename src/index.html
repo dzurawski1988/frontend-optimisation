@@ -15,9 +15,9 @@
     <meta name="description" content="Web Dev Insider demo page for learning purposes.">
     <meta name="format-detection" content="telephone=no">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="preload" href="./assets/images/homework/banner.png">
-    <link rel="preload" href="./assets/fonts/subset-Montserrat-Light.woff2">
-    <link rel="preload" href="./assets/fonts/subset-Montserrat-SemiBold.woff2">
+    <link rel="preload" href="./assets/images/homework/banner.png" as="image">
+    <link rel="preload" href="./assets/fonts/subset-Montserrat-Light.woff2" as="font">
+    <link rel="preload" href="./assets/fonts/subset-Montserrat-SemiBold.woff2" as="font">
     <style>
       @font-face {
      font-family: 'Montserrat';
@@ -58,36 +58,54 @@
     <link href="/favicon.ico" rel="icon">
     <!-- <script src="//use.typekit.net/lna1ryl.js"></script>
     <script>try{Typekit.load({async: true});}catch(e){}</script> -->
-    <script src="/assets/js/homework/lazy/ls.bgset.min.js" async></script>
-    <script src="/assets/js/homework/lazy/lazysizes.min.js" async></script>
-    <script>
-      function loadJS(u){var r=document.getElementsByTagName("script")[0],s=document.createElement("script");s.src=u;r.parentNode.insertBefore(s,r);}
-  
-      if(!window.HTMLPictureElement || !('sizes' in document.createElement('img'))){
-          loadJS("ls.respimg.min.js");
-      }
-  </script>
     <script src="https://js.stripe.com/v3/" async></script>
     <script data-main="/assets/js/homework/home" src="/assets/js/homework/vendor/requirejs/require.js" defer></script>
     <script src="/assets/js/homework/vendor/jquery/dist/jquery.min.js"></script>
     <script>var media_url = '/assets/', site_url = '/';$(document).load().scrollTop(0);</script>
     <script>
+    (function (w, d) {
+        w.addEventListener('LazyLoad::Initialized', function (e) {
+            w.lazyLoadInstance = e.detail.instance;
+        }, false);
+        var b = d.getElementsByTagName('head')[0];
+        var s = d.createElement("script");
+        s.async = true;
+        var v = !("IntersectionObserver" in w)
+            ? "lazyloadPolyfill.js"
+            : "lazyloadIntersectionObserver.js";
+        s.src = "/assets/js/homework/" + v;
+        w.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 100,
+            callback_enter: function (element) {
+                var css = element.getAttribute('data-style');
+                if (css) {
+                    css = css.replace(/(\r\n|\n|\r)/gm, "");
+                    var style = document.createElement('style');
+                    var head = document.getElementsByTagName('head')[0];
+                    head.appendChild(style);
+                    style.setAttribute("type", "text/css");
+                    if (style.styleSheet) {
+                        style.styleSheet.cssText = css;
+                    } else {
+                        var styleText = document.createTextNode(css);
+                        style.appendChild(styleText);
+                    }
+                    setTimeout(function () {
+                        element
+                            .classList
+                            .add('lazy--loaded');
+                    }, 300);
+                }
+            }
+        };
+        b.appendChild(s);
+    }(window, document));
+</script>
+    <script>
       document.fonts.ready.then(function() {
         document.getElementsByTagName("html")[0].classList.add('fonts-loaded');
       });
-      </script>
-      <script>
-if ('loading' in HTMLImageElement.prototype) {
-  const resources = document.querySelectorAll("[loading]");
-  resources.forEach(resource => {
-    console.log(resource);
-    resource.src = resource.dataset.src;
-  });
-} else {
-  let script = document.createElement('script');
-  script.async = true;
-  script.src = "/assets/js/lazy/lazysizes.min.js";
-  document.body.appendChild(script)}
       </script>
   <script>
   document.addEventListener("DOMContentLoaded", function(){
@@ -180,8 +198,9 @@ if ('loading' in HTMLImageElement.prototype) {
               <div class="item__category item__category--50 l-megamenu__cat"><a title="White papers" href="">White papers</a></div>
               <h2 class="headline-2">Some super interesting resource to download</h2>
               <p class="small-text">
-               <picture><img loading="lazy" data-src="/assets/images/homework/post.png" class="l-megamenu__image" alt=""></picture>
+               <picture><img loading="lazy" class="lazy" data-src="/assets/images/homework/post.png" class="l-megamenu__image" alt=""></picture>
                 Just download it and enjoy.
+              </p>
               </p>
               <p>
                 <a class="btn btn--bg-darkblue btn--border-blue" href="/" title="Download now: Ovum Report - Vodafone in-network call recording">Download now</a>
@@ -216,7 +235,7 @@ if ('loading' in HTMLImageElement.prototype) {
             <div>
               <div class="item__category item__category--79 l-megamenu__cat"><a title="eBooks" href="/">eBooks</a></div>
               <h2 class="headline-2">PCI DSS and the contact center</h2>
-              <p class="small-text"><img loading="lazy" loading="lazy"data-src="/assets/images/homework/news-example.jpg" class="l-megamenu__image" alt=""> Some text is here so you are impressed and you will click the button below.
+              <p class="small-text"><img loading="lazy" loading="lazy" class="lazy" data-src="/assets/images/homework/news-example.jpg" class="l-megamenu__image" alt=""> Some text is here so you are impressed and you will click the button below.
               </p>
               <p>
                 <a class="btn btn--bg-darkblue btn--border-blue" href="/2" title="Download now">Download now</a>
@@ -236,7 +255,7 @@ if ('loading' in HTMLImageElement.prototype) {
             <div>
               <div class="item__category item__category--50 l-megamenu__cat"><a title="White papers" href="/">White papers</a></div>
               <h2 class="headline-2">Report about mobile payment gateways</h2>
-              <p class="small-text"><img loading="lazy" data-src="/assets/images/homework/post2.png" class="l-megamenu__image" alt=""> An MNO service that doesn&#39;t require a SIM change
+              <p class="small-text"><img loading="lazy" class="lazy" data-src="/assets/images/homework/post2.png" class="l-megamenu__image" alt=""> An MNO service that doesn&#39;t require a SIM change
               </p>
               <p>
                 <a class="btn btn--bg-darkblue btn--border-blue" href="/" title="Download now">Download now</a>
@@ -342,7 +361,7 @@ if ('loading' in HTMLImageElement.prototype) {
     autoplay="autoplay"
     playsinline="playsinline"
     allowfullscreen="allowfullscreen"
-    data-src="https://www.youtube.com/embed/W9-dlonF1JE">
+    class="lazy" data-src="https://www.youtube.com/embed/W9-dlonF1JE">
   </iframe>
         </div>
       </div>
@@ -353,7 +372,7 @@ if ('loading' in HTMLImageElement.prototype) {
           <section class="col-25 left">
             <div>
               <figure class="aspect" style="--width:500; --heigth: 333">
-                <img loading="lazy" data-src="/assets/images/homework/i/slideshow/pci-compliance-45db.png" width="175" alt="">
+                <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/pci-compliance-45db.png" width="175" alt="">
               </figure>
               <h2 class="headline-2">PCI<br />
                 Compliance
@@ -367,7 +386,7 @@ if ('loading' in HTMLImageElement.prototype) {
           <section class="col-25 left">
             <div>
               <figure class="aspect" style="--width:500; --heigth: 333">
-                <img loading="lazy" data-src="/assets/images/homework/i/slideshow/call-recording-4d00.png" width="175" alt="">
+                <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/call-recording-4d00.png" width="175" alt="">
               </figure>
               <h2 class="headline-2">Voice and data recording solutions
               </h2>
@@ -380,7 +399,7 @@ if ('loading' in HTMLImageElement.prototype) {
           <section class="col-25 left">
             <div>
               <figure class="aspect" style="--width:500; --heigth: 333">
-                <img loading="lazy" data-src="/assets/images/homework/i/slideshow/interaction-analytics-4124.png" width="175" alt="">
+                <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/interaction-analytics-4124.png" width="175" alt="">
               </figure>
               <h2 class="headline-2">Interaction analytics solutions
               </h2>
@@ -393,7 +412,7 @@ if ('loading' in HTMLImageElement.prototype) {
           <section class="col-25 left">
             <div>
               <figure class="aspect" style="--width:500; --heigth: 333">
-                <img loading="lazy" data-src="/assets/images/homework/i/slideshow/platform-cloud-enabled-f7b0.png" width="175" alt="">
+                <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/platform-cloud-enabled-f7b0.png" width="175" alt="">
               </figure>
               <h2 class="headline-2">Platform
                 <br><span class="headline-2__smaller"> cloud-enabled solutions</span>
@@ -407,13 +426,26 @@ if ('loading' in HTMLImageElement.prototype) {
         </div>
       </div>
       <!-- // -->
-      <div data-bgset="/assets/images/homework/map-dotted.png" data-bgset="/assets/images/homework/bg-sec-grad-lime.svg" data-sizes="auto" class="page-section page-section--global-map page-section--global-map__home page-section--triangle-white lazyload">
+      <div
+      data-sizes="auto" id="section-global-map" class="lazy page-section page-section--global-map page-section--global-map__home page-section--triangle-white"
+      data-style="#section-global-map {
+        background: url('/assets/images/homework/map-dotted.png') center center no-repeat;
+        background: url('/assets/images/homework/bg-sec-grad-lime.svg') top center no-repeat;
+        background-size: auto auto, cover;
+        background-attachment: fixed, scroll;
+      }">
         <div class="layout">
           <h3 class="headline-3">Global cloud-based solution <br>for your online business.</h3>
         </div>
       </div>
       <!-- section with slider -->
-      <div data-bgset="/assets/images/homework/bg-sec-dark-circles.png" class="page-section page-section--bg-dark lazyload">
+      <div id="section-bg-dark" class="lazy page-section page-section--bg-dark lazyload"
+      data-style="#section-bg-dark {
+          background: url('/assets/images/homework/bg-sec-dark-circles.png');
+          background-size: auto auto, cover;
+        }
+      "
+      >
         <div class="slider-full-width" id="slider">
           <div class="layout2">
             <!-- custom buttons prev/next -->
@@ -424,7 +456,7 @@ if ('loading' in HTMLImageElement.prototype) {
             <div id="slider-features" class="text text--bg-grey">
               <section>
                 <figure class="aspect" style="--width:500; --heigth: 333">
-                  <img loading="lazy" data-src="/assets/images/homework/i/slideshow/slider-capture-0f4c.png" alt="">
+                  <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/slider-capture-0f4c.png" alt="">
                 </figure>
                 <div>
                   <span class="headline-2 blue">Capture</span>
@@ -443,7 +475,7 @@ if ('loading' in HTMLImageElement.prototype) {
               </section>
               <section>
                 <figure class="aspect" style="--width:500; --heigth: 333">
-                  <img loading="lazy" data-src="/assets/images/homework/i/slideshow/slider-store-c81d.png" alt="">
+                  <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/slider-store-c81d.png" alt="">
                 </figure>
                 <div>
                   <span class="headline-2 green">Store</span>
@@ -462,7 +494,7 @@ if ('loading' in HTMLImageElement.prototype) {
               </section>
               <section>
                 <figure class="aspect" style="--width:500; --heigth: 333">
-                  <img loading="lazy" data-src="/assets/images/homework/i/slideshow/slider-analyze-cbfa.png" alt="">
+                  <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/slider-analyze-cbfa.png" alt="">
                 </figure>
                 <div>
                   <span class="headline-2 orange">Analyze</span>
@@ -481,7 +513,7 @@ if ('loading' in HTMLImageElement.prototype) {
               </section>
               <section>
                 <figure class="aspect" style="--width:500; --heigth: 333">
-                  <img loading="lazy" data-src="/assets/images/homework/i/slideshow/slider-consume-e378.png" alt="">
+                  <img loading="lazy" class="lazy" data-src="/assets/images/homework/i/slideshow/slider-consume-e378.png" alt="">
                 </figure>
                 <div>
                   <span class="headline-2 red">Consume</span>
@@ -514,7 +546,15 @@ if ('loading' in HTMLImageElement.prototype) {
       </div>
       <!-- // -->
       <!-- advantages boxes -->
-      <div class="page-section page-section--network page-section--triangle-black text">
+      <div class="lazy page-section page-section--network page-section--triangle-black text"
+      id="section-network"
+      data-style="
+      #section-network {
+          background: url('/assets/images/homework/bg-sec-fixed-network.png') bototm center no-repeat;
+        background: url('/assets/images/homework/bg-sec-grad-blue.svg') center center no-repeat;
+        background-size: auto auto, cover;
+        }
+      ">
         <div class="layout">
           <section class="col-33 left">
             <div>
@@ -568,7 +608,13 @@ if ('loading' in HTMLImageElement.prototype) {
             </div>
             <div class="info-box__blue col-60 right">
               <div>
-                <div class="left col-65 text text--bg-blue">
+                <div id="text-bg-blue" class="lazy left col-65 text text--bg-blue"
+                  data-style="
+                    #text-bg-blue {
+                      background : url('/assets/images/homework/bg-box-grad-blue.jpg');
+                    }
+                  "
+                >
                   <ul>
                     <li>
                       Greater flexibility and lower cost than on-premise solutions
@@ -585,7 +631,7 @@ if ('loading' in HTMLImageElement.prototype) {
                   </ul>
                 </div>
                 <div class="info-box__product-tour col-35 left">
-                  <img loading="lazy" data-src="/assets/images/homework/slider-store.png" alt="">
+                  <img loading="lazy" class="lazy" data-src="/assets/images/homework/slider-store.png" alt="">
                   <a class="btn btn--bg-darkblue btn--border-blue popup" href="https://www.youtube.com/watch?v=KCK0PqiJbA0">Product Tour</a>
                 </div>
               </div>
@@ -606,16 +652,16 @@ if ('loading' in HTMLImageElement.prototype) {
             </h3>
           </div>
           <ul class="page-section--customers__logos">
-            <li><img loading="lazy" data-src="/assets/images/homework/i/logos/gallery/viking-135-1246.jpg" alt=""></li>
-            <li><img loading="lazy" data-src="/assets/images/homework/i/logos/gallery/vodafone-135-1a70.jpg" alt=""></li>
-            <li><img loading="lazy" data-src="/assets/images/homework/i/logos/gallery/sse-135-4e83.jpg" alt=""></li>
-            <li><img loading="lazy" data-src="/assets/images/homework/i/logos/gallery/investec-135-6def.jpg" alt=""></li>
-            <li><img loading="lazy" data-src="/assets/images/homework/i/logos/gallery/cowen-group-135-ef66.jpg" alt=""></li>
-            <li><img loading="lazy" data-src="/assets/images/homework/i/logos/gallery/gatehouse-bank-135-d82b.jpg" alt=""></li>
-            <li><img loading="lazy" data-src="/assets/images/homework/i/logos/gallery/bgc-135-bb6b.jpg" alt=""></li>
-            <li><img loading="lazy" data-src="/assets/images/homework/i/logos/gallery/centrica-135-1f68.jpg" alt=""></li>
-            <li><img loading="lazy" data-src="/assets/images/homework/i/logos/gallery/itg-1352-5e17.jpg" alt=""></li>
-            <li><img loading="lazy" data-src="/assets/images/homework/i/logos/gallery/bmo-135-78f7.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/viking-135-1246.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/vodafone-135-1a70.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/sse-135-4e83.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/investec-135-6def.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/cowen-group-135-ef66.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/gatehouse-bank-135-d82b.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/bgc-135-bb6b.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/centrica-135-1f68.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/itg-1352-5e17.jpg" alt=""></li>
+            <li><img loading="lazy" class="lazy" data-src="/assets/images/homework/i/logos/gallery/bmo-135-78f7.jpg" alt=""></li>
           </ul>
           <div class="text text--bg-blue page-section--customers__learn">
             <p>
@@ -641,7 +687,7 @@ if ('loading' in HTMLImageElement.prototype) {
                       <h6 class="headline-7"><a href="/">Some event that happened on 2014 Amsterdam, Netherlands</a></h6>
                     </header>
                     <figure class="aspect" style="--width:500; --heigth: 333">
-                      <img loading="lazy" data-src="/assets/images/homework/post3.png" alt="">
+                      <img loading="lazy" class="lazy" data-src="/assets/images/homework/post3.png" alt="">
                     </figure>
                     <p class="small-text">
                       Cum sociis natoque penatibus et ultrices volutpat. Nullam wisi ultricies a, gravida vitae, dapibus risus ante sodales lectus blandit eu, tempor diam pede cursus vitae, ultricies eu, faucibus quis, porttitor eros cursus lectus, pellentesque eget, bibendum a, gravida ullamcorper quam.
@@ -658,7 +704,7 @@ if ('loading' in HTMLImageElement.prototype) {
                       <h6 class="headline-7"><a href="/">Council Community Meeting 9-11 2014 Florida USA</a></h6>
                     </header>
                     <figure class="aspect" style="--width:500; --heigth: 333">
-                      <img loading="lazy" data-src="/assets/images/homework/post4.png" alt="">
+                      <img loading="lazy" class="lazy" data-src="/assets/images/homework/post4.png" alt="">
                     </figure>
                     <p class="small-text">
                       Cum sociis natoque penatibus et ultrices volutpat. Nullam wisi ultricies a, gravida vitae, dapibus risus ante sodales lectus blandit eu, tempor diam pede cursus vitae, ultricies eu, faucibus quis, porttitor eros cursus lectus, pellentesque eget, bibendum a, gravida ullamcorper quam.
@@ -675,7 +721,7 @@ if ('loading' in HTMLImageElement.prototype) {
                       <h6 class="headline-7"><a href="">European Community Meeting Maritim Hotel Berlin October 7-9, 2014  Berlin, Germany</a></h6>
                     </header>
                     <figure class="aspect" style="--width:500; --heigth: 333">
-                      <img loading="lazy" data-src="/assets/images/homework/post5.png" alt="">
+                      <img loading="lazy" class="lazy" data-src="/assets/images/homework/post5.png" alt="">
                     </figure>
                     <p class="small-text">
                       Cum sociis natoque penatibus et ultrices volutpat. Nullam wisi ultricies a, gravida vitae, dapibus risus ante sodales lectus blandit eu, tempor diam pede cursus vitae, ultricies eu, faucibus quis, porttitor eros cursus lectus, pellentesque eget, bibendum a, gravida ullamcorper quam.
@@ -726,7 +772,7 @@ if ('loading' in HTMLImageElement.prototype) {
       <div class="l-footer__top">
         <div class="layout">
           <div class="col-15 left">
-            <a title="Home" href="/"><img loading="lazy" data-src="/assets/images/homework/logo.svg" alt="Web Dev Insider" width="141" height="42"></a>
+            <a title="Home" href="/"><img loading="lazy" class="lazy" data-src="/assets/images/homework/logo.svg" alt="Web Dev Insider" width="141" height="42"></a>
           </div>
           <div class="col-85 l-footer__top-links right">
             <ul>
