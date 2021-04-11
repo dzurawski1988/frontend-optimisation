@@ -156,6 +156,7 @@ window.addEventListener("load", loadGTM);
         <a class="btn-close search__btn-close" href="javascript:;">Close</a>
         <p>Search and hit enter</p>
         <form action="/search" method="get">
+          <label for="search">Search</label>
           <input type="text" name="phrase" id="phrase" placeholder="What are you looking for?">
           <button class="search__submit" type="submit" title="Submit">Search</button>
         </form>
@@ -200,7 +201,7 @@ window.addEventListener("load", loadGTM);
           <div class="col-35 text right">
             <div>
               <div class="item__category item__category--50 l-megamenu__cat"><a title="White papers" href="">White papers</a></div>
-              <h2 class="headline-2">Some super interesting resource to download</h2>
+              <p class="headline-2">Some super interesting resource to download</p>
               <p class="small-text">
                <picture><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/post.png" class="l-megamenu__image" alt=""></picture>
                 Just download it and enjoy.
@@ -238,7 +239,7 @@ window.addEventListener("load", loadGTM);
           <div class="col-35 text right">
             <div>
               <div class="item__category item__category--79 l-megamenu__cat"><a title="eBooks" href="/">eBooks</a></div>
-              <h2 class="headline-2">PCI DSS and the contact center</h2>
+              <p class="headline-2">PCI DSS and the contact center</p>
               <p class="small-text"><img loading="lazy" loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/news-example.jpg" class="l-megamenu__image" alt=""> Some text is here so you are impressed and you will click the button below.
               </p>
               <p>
@@ -258,7 +259,7 @@ window.addEventListener("load", loadGTM);
           <div class="col-35 text right">
             <div>
               <div class="item__category item__category--50 l-megamenu__cat"><a title="White papers" href="/">White papers</a></div>
-              <h2 class="headline-2">Report about mobile payment gateways</h2>
+              <p class="headline-2">Report about mobile payment gateways</p>
               <p class="small-text"><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/post2.png" class="l-megamenu__image" alt=""> An MNO service that doesn&#39;t require a SIM change
               </p>
               <p>
@@ -345,21 +346,18 @@ window.addEventListener("load", loadGTM);
 
       <div class="mfp-hide popup-form-container" id="popup">
         <h2 class="headline-2">Payment Gateway demo</h2>
-
         <form class="form" action="/charge" method="post" id="payment-form">
           <div class="form__row">
-            <label for="name">
-              Name
-            </label>
-            <input id="name" name="name" type="text" placeholder="Jenny Rosen" required>
+            <fieldset>
+              <legend>Personalia</legend>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Jenny Rosen" required value="name">
           </div>
-
           <div class="form__row">
-            <label for="email">
-              Email Address
-            </label>
-            <input id="email" name="email" type="email" placeholder="jenny.rosen@example.com" required>
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" placeholder="jenny.rosen@example.com" required value="email">
           </div>
+        </fieldset>
         
           <div class="form__row">
             <label for="iban-element">
@@ -370,16 +368,15 @@ window.addEventListener("load", loadGTM);
             </div>
           </div>
           <div id="bank-name"></div>
-        
           <button class="btn btn--bg-darkblue btn--border-blue" type="submit">Submit Payment</button>
         </form>
       </div>
     </div>
-    <div class="l-main" id="main">
+    <main class="l-main" id="main">
       <div class="page-section page-section--video">
         <div class="layout">
           <h2 class="headline-2">Find out more</h2>
-    <iframe class="video lazy"
+    <iframe title="Video Youtube" class="video lazy"
     width="560"
     height="315"
     frameborder="0"
@@ -697,7 +694,7 @@ window.addEventListener("load", loadGTM);
         </div>
       </section>
       <!-- // -->
-    </div>
+    </main>
     <!-- social media sidebar -->
     <aside data-bgset="" class="l-social-media">
       <div class="layout">
@@ -981,5 +978,46 @@ document.onclick = function () {
     initScripts();
 };
     </script>
+    <script type="application/ld+json">
+      [
+        {
+          "@context": "http://schema.org",
+          "@type": "Webpage",
+          "specialty": "Gateway Paye,emt",
+          "mainContentOfPage": {
+            "@context": "http://schema.org/",
+            "@type": "WebPageElement",
+            "cssSelector": ".body-content"
+          },
+          "primaryImageOfPage": "https://placehold.it/640x480"
+        },
+        {
+          "@context": "http://schema.org",
+          "@type": "WebSite",
+          "@id": "https://jay.holtslander.ca/#website",
+          "additionalType": ["CreativeWork", "Person"],
+          "url": "https://jay.holtslander.ca",
+          "name": "Jay Holtslander",
+          "alternateName": "j_holtslander",
+          "headline": "Like a page title",
+          "image": "https://jay.holtslander.ca/facebook.jpg",
+          "inLanguage": "en-CA",
+          "author": "Jay Holtslander",
+          "description": "Personal website of Jay Holtslander. Co-founder of CodeCore Bootcamp.",
+          "disambiguatingDescription": "Personal website of Jay Holtslander",
+          "isFamilyFriendly": "http://schema.org/True",
+          "contentRating": "NR",
+          "sourceOrganization": "CNBC",
+          "publisher": {
+            "@type": "Organization",
+            "name": "ThinkwithGoogle",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.thinkwithgoogle.com/_qs/static/img/global/twg-logo-small.jpg",
+              "height": 60,
+              "width": 107
+            }
+          }
+        </script>
   </body>
 </html>
