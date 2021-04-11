@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://ik.imagekit.io" crossorigin>
-    <link rel="preload" href=".https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/banner.png" as="image">
+    <link rel="preload" href=" ./images/homework/banner.png" as="image">
     <link rel="preload" href="./assets/fonts/subset-Montserrat-Light.woff2" as="font">
     <link rel="preload" href="./assets/fonts/subset-Montserrat-SemiBold.woff2" as="font">
     <style>
@@ -36,6 +36,10 @@
         font-style: normal;
         font-display: swap;
     }
+    @media screen and (max-width: 1101px) {
+      footer > div.l-footer__top > div > div.col-15.left > a > picture > img {
+       display: none
+    }}
     </style>
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,900;1,100;1,200;1,300;1,400;1,500&display=swap">
@@ -62,37 +66,6 @@
     <script src="https://js.stripe.com/v3/" async></script>
     <script data-main="/assets/js/homework/home" src="/assets/js/homework/vendor/requirejs/require.js" defer></script>
     <script src="/assets/js/homework/vendor/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/imagekit-javascript/dist/imagekit.min.js"></script>
-    <script>
-var imagekit = new ImageKit({
-  publicKey: "public_A+JJKYQKSvWrhqKOnH78Wc4C15M=",
-    urlEndpoint: "https://ik.imagekit.io/djq141uxw5o/fo",
-    authenticationEndpoint: "https://frontend-optimisation-peach.vercel.app",
-});   
-
-var imageURL = imagekit.url({
-    path : "https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/pci-compliance-45db.png",
-    transformation : [{
-        "height" : "300",
-        "width" : "400"
-    }]
-});
-function upload(data) {
-    var file = document.querySelectorAll("img");
-    imagekit.upload({
-        file : file.files[0],
-        fileName : "pci-compliance-45db.png",
-        tags : ["tag1"]
-    }, function(err, result) {
-        console.log(arguments);
-        console.log(imagekit.url({
-            src: result.url,
-            transformation : [{ height: 300, width: 400}]
-        }));
-    })
-}
-upload();
-    </script>
     <script>var media_url = '/assets/', site_url = '/';$(document).load().scrollTop(0);</script>
     <script>
     (function (w, d) {
@@ -300,7 +273,8 @@ upload();
 
     <header
       class="l-home-banner"
-      style="background-image: url('https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/banner.png')">
+      style="background-image: url('/assets/images/homework/banner.png')">
+      <img hidden src="/assets/images/homework/banner.png" alt="Banner" title="Banner">
       <div class="layout">
         <div class="home-banner__content text">
           <h1 class="headline-1">Seamless<br> payment option</h1>
@@ -804,7 +778,12 @@ upload();
       <div class="l-footer__top">
         <div class="layout">
           <div class="col-15 left">
-            <a title="Home" href="/"><img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/logo.svg" alt="Web Dev Insider" width="141" height="42"></a>
+            <a title="Home" href="/">
+              <picture>
+                <source class="lazy" media="(min-width: 1101px)" srcset="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/logo.svg">
+                <img src="" alt="Web Dev Insider" width="141" height="42">
+              </picture>
+            </a>
           </div>
           <div class="col-85 l-footer__top-links right">
             <ul>

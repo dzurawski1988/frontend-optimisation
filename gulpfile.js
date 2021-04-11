@@ -226,6 +226,7 @@ gulp.task('write-service-worker', (cb) => {
     ],
     staticFileGlobs: [
       // Add/remove glob patterns to match your directory setup.
+      `${dist_folder}assets/images/!(tmp)/**/*`,
       `${dist_folder}assets/fonts/*.woff2`,
       `${dist_folder}assets/css/**/*.css`
     ],
