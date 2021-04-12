@@ -19,7 +19,8 @@ fscript {
 			  top: 0;
 			  max-height: 100%
 			}
-		  }		
+		  }
+		  fieldset {border: none}
 /* SASS tools */
 @import "sass-components/_variables";
 @import "sass-components/_mixins";
