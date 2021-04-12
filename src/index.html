@@ -2,26 +2,6 @@
 <html dir="ltr" lang="en" prefix="og: http://ogp.me/ns#">
 <!-- https://wdi-task-after.vercel.app/ -->
   <head>
-    <script>
-function loadGTM(){
-var my_GTM_id = 'GTM-TGDSWZ8'; // BE SURE TO UPDATE THIS TO MATCH UR ID
-//you can add checks here to see if GDPR got accepted if you want...
-(function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-          'gtm.start':
-              new Date().getTime(), event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', my_GTM_id);
-    }
-window.addEventListener("load", loadGTM);
-    </script>
     <meta charset="utf-8">
     <title>Web Dev Insider - site to optimise - homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,9 +10,9 @@ window.addEventListener("load", loadGTM);
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://ik.imagekit.io" crossorigin>
     <link rel="preload" href="/assets/images/homework/banner-1920.png?tr=w-1920" media="(min-width: 1441px)" as="image">
-        <link rel="preload" href="/assets/images/homework/banner-1440.png?tr=w-1440" media="(min-width:1200px) and (max-width:1440px)" as="image">
-        <link rel="preload" href="/assets/images/homework/banner-1200.png?tr=w-1200" media="(min-width:1025px) and (max-width:1199px)" as="image">
-        <link rel="preload" href="/assets/images/homework/banner-1024.png?tr=w-1024" media="(min-width:768px) and (max-width:1024px)" as="image">
+    <link rel="preload" href="/assets/images/homework/banner-1440.png?tr=w-1440" media="(min-width:1200px) and (max-width:1440px)" as="image">
+    <link rel="preload" href="/assets/images/homework/banner-1200.png?tr=w-1200" media="(min-width:1025px) and (max-width:1199px)" as="image">
+    <link rel="preload" href="/assets/images/homework/banner-1024.png?tr=w-1024" media="(min-width:768px) and (max-width:1024px)" as="image">
     <link rel="preload" href="./assets/fonts/subset-Montserrat-Light.woff2" as="font" crossorigin>
     <link rel="preload" href="./assets/fonts/subset-Montserrat-SemiBold.woff2" as="font" crossorigin>
     <style>
@@ -57,80 +37,98 @@ window.addEventListener("load", loadGTM);
        display: none
     }}
     </style>
-    <link href="/assets/css/homework/app.css" rel="stylesheet">
-    <link media="none" onload="if(media!='all')media='all'" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="/favicon.ico" rel="icon">
-    <!-- <script src="//use.typekit.net/lna1ryl.js"></script>
-    <script>try{Typekit.load({async: true});}catch(e){}</script> -->
-    <script src="https://js.stripe.com/v3/" async></script>
-    <script data-main="/assets/js/homework/home" src="/assets/js/homework/vendor/requirejs/require.js" defer></script>
-    <script src="/assets/js/homework/vendor/jquery/dist/jquery.min.js"></script>
-    <script>var media_url = '/assets/', site_url = '/';$(document).load().scrollTop(0);</script>
+    <link rel="preload" href="/assets/css/homework/app.css"  media="all" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <script>
-    (function (w, d) {
-        w.addEventListener('LazyLoad::Initialized', function (e) {
-            w.lazyLoadInstance = e.detail.instance;
-        }, false);
-        var b = d.getElementsByTagName('head')[0];
-        var s = d.createElement("script");
-        s.async = true;
-        var v = !("IntersectionObserver" in w)
-            ? "lazyloadPolyfill.js"
-            : "lazyloadIntersectionObserver.js";
-        s.src = "/assets/js/homework/" + v;
-        w.lazyLoadOptions = {
-            elements_selector: ".lazy",
-            threshold: 100,
-            callback_enter: function (element) {
-                var css = element.getAttribute('data-style');
-                if (css) {
-                    css = css.replace(/(\r\n|\n|\r)/gm, "");
-                    var style = document.createElement('style');
-                    var head = document.getElementsByTagName('head')[0];
-                    head.appendChild(style);
-                    style.setAttribute("type", "text/css");
-                    if (style.styleSheet) {
-                        style.styleSheet.cssText = css;
-                    } else {
-                        var styleText = document.createTextNode(css);
-                        style.appendChild(styleText);
-                    }
-                    setTimeout(function () {
-                        element
-                            .classList
-                            .add('lazy--loaded');
-                    }, 300);
-                }
-            }
-        };
-        b.appendChild(s);
-    }(window, document));
-</script>
+      function loadGTM(){
+      var my_GTM_id = 'GTM-TGDSWZ8'; // BE SURE TO UPDATE THIS TO MATCH UR ID
+      //you can add checks here to see if GDPR got accepted if you want...
+      (function (w, d, s, l, i) {
+              w[l] = w[l] || [];
+              w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+              });
+              var f = d.getElementsByTagName(s)[0],
+                  j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+              j.async = true;
+              j.src =
+                  'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+              f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', my_GTM_id);
+          }
+      window.addEventListener("load", loadGTM);
+          </script>
+    <!-- <link rel="stylesheet" href="/assets/css/homework/app.css" media="all"> -->
+    <link media="none" onload="if(media!='all')media='all'" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script>
       document.fonts.ready.then(function() {
         document.getElementsByTagName("html")[0].classList.add('fonts-loaded');
       });
       </script>
-  <script>
-  document.addEventListener("DOMContentLoaded", function(){
-  const lazyVideos = [].slice.call(document.querySelectorAll('.video.lazy'));
-  if ("IntersectionObserver" in window) {
-    const lazyVideoObserwer = new IntersectionObserver(function(entries, observer){
-      entries.forEach(function(video){
-        if (video.isIntersecting) {
-              video.target.src = video.target.dataset.src;
-          video.target.classList.remove('lazy');
-          lazyVideoObserwer.unobserve(video.target);
-        }
-      })
-    })
-    //tutaj code
-    lazyVideos.forEach(function(lazyVideo){
-      lazyVideoObserwer.observe(lazyVideo)
-    })
-  }
-})
-    </script>
+        <script>
+          (function (w, d) {
+              w.addEventListener('LazyLoad::Initialized', function (e) {
+                  w.lazyLoadInstance = e.detail.instance;
+              }, false);
+              var b = d.getElementsByTagName('head')[0];
+              var s = d.createElement("script");
+              s.async = true;
+              var v = !("IntersectionObserver" in w)
+                  ? "lazyloadPolyfill.js"
+                  : "lazyloadIntersectionObserver.js";
+              s.src = "/assets/js/homework/" + v;
+              w.lazyLoadOptions = {
+                  elements_selector: ".lazy",
+                  threshold: 100,
+                  callback_enter: function (element) {
+                      var css = element.getAttribute('data-style');
+                      if (css) {
+                          css = css.replace(/(\r\n|\n|\r)/gm, "");
+                          var style = document.createElement('style');
+                          var head = document.getElementsByTagName('head')[0];
+                          head.appendChild(style);
+                          style.setAttribute("type", "text/css");
+                          if (style.styleSheet) {
+                              style.styleSheet.cssText = css;
+                          } else {
+                              var styleText = document.createTextNode(css);
+                              style.appendChild(styleText);
+                          }
+                          setTimeout(function () {
+                              element
+                                  .classList
+                                  .add('lazy--loaded');
+                          }, 300);
+                      }
+                  }
+              };
+              b.appendChild(s);
+          }(window, document));
+      </script>
+         <script>
+          document.addEventListener("DOMContentLoaded", function(){
+          const lazyVideos = [].slice.call(document.querySelectorAll('.video.lazy'));
+          if ("IntersectionObserver" in window) {
+            const lazyVideoObserwer = new IntersectionObserver(function(entries, observer){
+              entries.forEach(function(video){
+                if (video.isIntersecting) {
+                      video.target.src = video.target.dataset.src;
+                  video.target.classList.remove('lazy');
+                  lazyVideoObserwer.unobserve(video.target);
+                }
+              })
+            })
+            //tutaj code
+            lazyVideos.forEach(function(lazyVideo){
+              lazyVideoObserwer.observe(lazyVideo)
+            })
+          }
+        })
+            </script>
+    <link href="/favicon.ico" rel="icon">
+    <!-- <script src="//use.typekit.net/lna1ryl.js"></script>
+    <script>try{Typekit.load({async: true});}catch(e){}</script> -->
+    <script>var media_url = '/assets/', site_url = '/';$(document).load().scrollTop(0);</script>
         <!--Start of Tawk.to Script-->
         <fscript>
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -919,6 +917,9 @@ window.addEventListener("load", loadGTM);
       </div>
     </footer>
     <!-- // -->
+    <script src="https://js.stripe.com/v3/"></script>
+          <script data-main="/assets/js/homework/home" src="/assets/js/homework/vendor/requirejs/require.js"></script>
+          <script src="/assets/js/homework/vendor/jquery/dist/jquery.min.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
