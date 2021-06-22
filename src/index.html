@@ -38,26 +38,6 @@
     }}
     </style>
     <link rel="preload" href="/assets/css/homework/app.css"  media="all" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <script>
-      function loadGTM(){
-      var my_GTM_id = 'GTM-TGDSWZ8'; // BE SURE TO UPDATE THIS TO MATCH UR ID
-      //you can add checks here to see if GDPR got accepted if you want...
-      (function (w, d, s, l, i) {
-              w[l] = w[l] || [];
-              w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-              });
-              var f = d.getElementsByTagName(s)[0],
-                  j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-              j.async = true;
-              j.src =
-                  'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-              f.parentNode.insertBefore(j, f);
-            })(window, document, 'script', 'dataLayer', my_GTM_id);
-          }
-      window.addEventListener("load", loadGTM);
-          </script>
     <!-- <link rel="stylesheet" href="/assets/css/homework/app.css" media="all"> -->
     <link media="none" onload="if(media!='all')media='all'" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script>
@@ -1022,5 +1002,25 @@ document.onclick = function () {
             }
           }
         </script>
+        <script>
+          function loadGTM(){
+          var my_GTM_id = 'GTM-TGDSWZ8'; // BE SURE TO UPDATE THIS TO MATCH UR ID
+          //you can add checks here to see if GDPR got accepted if you want...
+          (function (w, d, s, l, i) {
+                  w[l] = w[l] || [];
+                  w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                  });
+                  var f = d.getElementsByTagName(s)[0],
+                      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                  j.async = true;
+                  j.src =
+                      'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                  f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', my_GTM_id);
+              }
+          window.addEventListener("load", loadGTM);
+              </script>
   </body>
 </html>
