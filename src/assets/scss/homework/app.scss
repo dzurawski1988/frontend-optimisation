@@ -5,8 +5,9 @@ html:not(.fonts-loaded) {
 	letter-spacing: 0.65px;
 	word-spacing: 2px;
 }
-fscript {
-		display: none;}
+// fscript {
+// 		display: none;}
+
 		@supports (--foo: 1) {
 			.aspect {
 			  position: relative;

@@ -43,6 +43,19 @@
     <script>
       var worker = new Worker('https://frontend-optimisation-peach.vercel.app/assets/js/homework/home.js')
     </script>
+       <!--Start of Tawk.to Script-->
+       <fscript>
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5fc2ba00920fc91564cb9b3c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        <!--End of Tawk.to Script-->
+        </fscript>
     <script>
       document.fonts.ready.then(function() {
         document.getElementsByTagName("html")[0].classList.add('fonts-loaded');
@@ -111,19 +124,11 @@
     <link href="/favicon.ico" rel="icon">
     <!-- <script src="//use.typekit.net/lna1ryl.js"></script>
     <script>try{Typekit.load({async: true});}catch(e){}</script> -->
-        <!--Start of Tawk.to Script-->
-        <fscript>
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/5fc2ba00920fc91564cb9b3c/default';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
-        <!--End of Tawk.to Script-->
-        </fscript>
+        <script>
+          document.fonts.ready.then(function() {
+              document.getElementsByTagName('html')[0].classList.add('fonts-loaded');
+          });
+      </script>
   </head>
   <body>
     <div class="overlay"></div>
@@ -900,13 +905,6 @@
           <script>var media_url = '/assets/', site_url = '/';$(document).load().scrollTop(0);</script>
           <script data-main="/assets/js/homework/home" src="/assets/js/homework/vendor/requirejs/require.js"></script>
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/service-worker.js');
-        })
-      }
-    </script>
-    <script>
       var scriptsExecuted = false;
 var head = document.getElementsByTagName('head')[0] || document.documentElement;
 function executeScripts() {
@@ -1030,5 +1028,12 @@ document.onclick = function () {
        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGDSWZ8"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
+        <script>
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('/service-worker.js');
+            })
+          }
+        </script>
   </body>
 </html>
