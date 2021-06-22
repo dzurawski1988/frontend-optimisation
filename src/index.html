@@ -129,6 +129,12 @@
               document.getElementsByTagName('html')[0].classList.add('fonts-loaded');
           });
       </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js"></script>
+      <script>
+      window.addEventListener('load', () => {
+        quicklink.listen();
+      });
+      </script>
   </head>
   <body>
     <div class="overlay"></div>
