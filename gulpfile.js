@@ -262,7 +262,7 @@ gulp.task(
     'sass',
     'less',
     'stylus',
-    //'js',
+    'js',
     'js-copy',
     'requirejsBuild',
     'fonts',
