@@ -172,7 +172,4 @@ require(['./main'], function (main) {
 		h.init();
 		global.init();
 	});
-
-
-
 });
