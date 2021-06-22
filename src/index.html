@@ -41,6 +41,9 @@
     <!-- <link rel="stylesheet" href="/assets/css/homework/app.css" media="all"> -->
     <link media="none" onload="if(media!='all')media='all'" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script>
+      var worker = new Worker('https://frontend-optimisation-peach.vercel.app/assets/js/homework/home.js')
+    </script>
+    <script>
       document.fonts.ready.then(function() {
         document.getElementsByTagName("html")[0].classList.add('fonts-loaded');
       });
@@ -123,10 +126,6 @@
         </fscript>
   </head>
   <body>
-       <!-- Google Tag Manager (noscript) -->
-       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGDSWZ8"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
     <div class="overlay"></div>
     <div class="search">
       <div class="layout3 text text--bg-grey">
@@ -1027,5 +1026,9 @@ document.onclick = function () {
           document.head.appendChild(script);
         }
         </script>
+        <!-- Google Tag Manager (noscript) -->
+       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGDSWZ8"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
   </body>
 </html>
