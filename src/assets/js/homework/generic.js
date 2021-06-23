@@ -3,7 +3,7 @@ require(['./main'], function (main) {
 
 
 
-	require(['jquery', 'components/bxslider', 'waypoints', 'global'], function($, $bxslider, domReady, waypoints, global) {
+	require(['jquery', 'components/bxslider', 'waypoints', 'global'], function($, $bxslider, waypoints, global) {
 		
 
 		var h = {
