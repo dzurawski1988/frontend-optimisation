@@ -14,6 +14,8 @@ requirejs.config({
         'waypoints': {
           deps: ['jquery']
         }
-    }
+    },
 
+    optimizeAllPluginResources = true,
+    findNestedDependencies = true
 });
