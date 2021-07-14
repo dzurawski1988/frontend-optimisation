@@ -15,7 +15,6 @@ requirejs.config({
           deps: ['jquery']
         }
     },
-
-    optimizeAllPluginResources = true,
-    findNestedDependencies = true
+    // optimizeAllPluginResources = true,
+    // findNestedDependencies = true
 });

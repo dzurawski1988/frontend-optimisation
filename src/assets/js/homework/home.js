@@ -1,8 +1,5 @@
 require(['./main'], function (main) {
 
-
-
-
 	require(['jquery', 'tweenmax', 'components/bxslider', 'waypoints', 'global'], function($, tweenmax, $bxslider, waypoints, global) {
 		
 
@@ -119,9 +116,6 @@ require(['./main'], function (main) {
 	                touchEnabled: false
 	            });
 			},
-
-
-
 			shortcuts: function() {
 				$('.l-shortcuts--home').clone().insertAfter('.l-shortcuts--home').addClass('sticky');
 
