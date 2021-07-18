@@ -45,7 +45,7 @@
     <link rel="preload" href="/assets/css/homework/app.css"  media="all" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <!-- <link rel="stylesheet" href="/assets/css/homework/app.css" media="all"> -->
     <!-- <link media="none" onload="if(media!='all')media='all'" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
-    
+
     <!-- <script>
       var worker = new Worker('https://frontend-optimisation-peach.vercel.app/assets/js/homework/home.js')
     </script> -->
@@ -504,7 +504,8 @@
                 </div>
               </section>
               <section>
-                <figure class="aspect" style="--width:500; --heigth: 333">
+                <!-- <figure class="aspect" style="--width:500; --heigth: 333"> -->
+                  <figure>
                   <img loading="lazy" class="lazy" data-src="https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/i/slideshow/slider-analyze-cbfa.png" alt="">
                 </figure>
                 <div>
@@ -909,10 +910,6 @@
     </footer>
     <!-- // -->
           <!-- <script src="https://js.stripe.com/v3/"></script> -->
-          <script src="/assets/js/homework/vendor/jquery/dist/jquery.min.js"></script>
-          <script>var media_url = '/assets/', site_url = '/';$(document).load().scrollTop(0);</script>
-          <script data-main="/assets/js/homework/home" src="/assets/js/homework/vendor/requirejs/require.js"></script>
-          <script>var scriptsExecuted=false; var head=document.getElementsByTagName('head')[0] || document.documentElement; function executeScripts(){var fscripts=document.querySelectorAll('fscript'); [].forEach.call(fscripts, function(fscript){var script=document.createElement('script'); script.type='text/javascript'; if (fscript.hasAttributes()){for (var attributeKey in fscript.attributes){if (fscript.attributes.hasOwnProperty(attributeKey)){script[ fscript.attributes[ attributeKey].name]=fscript.attributes[ attributeKey].value || true;}}}else{script.appendChild( document.createTextNode( fscript.innerHTML ) );}head.insertBefore( script, head.firstChild );});}function initScripts(){console.log(123); if (scriptsExecuted){return;}scriptsExecuted=true; setTimeout(function(){if ('requestIdleCallback' in window){requestIdleCallback(executeScripts,{timeout: 1000});}else{executeScripts();}}, 1000);}window.addEventListener('scroll', function(){initScripts();}, false); document.onclick=function(){initScripts();}; </script>
     <script type="application/ld+json">
       [
         {
@@ -996,5 +993,9 @@
                 quicklink.listen();
               });
               </script>
+              <script src="/assets/js/homework/vendor/jquery/dist/jquery.min.js"></script>
+              <script>var media_url = '/assets/', site_url = '/';$(document).load().scrollTop(0);</script>
+              <script data-main="/assets/js/homework/home" src="/assets/js/homework/vendor/requirejs/require.js"></script>
+              <script>var scriptsExecuted=false; var head=document.getElementsByTagName('head')[0] || document.documentElement; function executeScripts(){var fscripts=document.querySelectorAll('fscript'); [].forEach.call(fscripts, function(fscript){var script=document.createElement('script'); script.type='text/javascript'; if (fscript.hasAttributes()){for (var attributeKey in fscript.attributes){if (fscript.attributes.hasOwnProperty(attributeKey)){script[ fscript.attributes[ attributeKey].name]=fscript.attributes[ attributeKey].value || true;}}}else{script.appendChild( document.createTextNode( fscript.innerHTML ) );}head.insertBefore( script, head.firstChild );});}function initScripts(){console.log(123); if (scriptsExecuted){return;}scriptsExecuted=true; setTimeout(function(){if ('requestIdleCallback' in window){requestIdleCallback(executeScripts,{timeout: 1000});}else{executeScripts();}}, 1000);}window.addEventListener('scroll', function(){initScripts();}, false); document.onclick=function(){initScripts();}; </script>
   </body>
 </html>
