@@ -1,9 +1,9 @@
-.l-main {
+// .l-main {
 	
-}
+// }
 
 .l-main--inner-page {
-	background: #f7f7f7 url(/assets/images/homework/bg-sec-grey-grid.png) center 100px no-repeat;
+	background: #f7f7f7 url('https://ik.imagekit.io/djq141uxw5o/fo/assets/images/homework/bg-sec-grey-grid.png') center 100px no-repeat;
 
 	color: #4c5359;
 }
@@ -34,6 +34,6 @@
 .l-main .col-60:last-child > div,
 .l-main .col-70:last-child > div,
 .l-main .col-50:last-child > div,
-.l-main .col-45:last-child > div, {
+.l-main .col-45:last-child > div {
     padding-left: 20px;
 }
